@@ -5,6 +5,4 @@ WIP: General idea fastq -> visualization + analysis for ChIP data
 flowchart TD
     fastq --> bam
     bam --> peak calling (MACS3)
-    peak calling (MACS3) --> consensus peaks (mscp)
-    consensus peaks (mscp) --> peak sites
 ```
