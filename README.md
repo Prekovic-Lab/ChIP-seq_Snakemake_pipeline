@@ -5,6 +5,6 @@ WIP: General idea fastq -> visualization + analysis for ChIP data
 flowchart TD
     fastq --> bam
     bam --> peak_call
-    peak_call --> con_peaks
-    con_peaks --> peak_sites
+    peak_call --> con_peak
+    con_peak --> peak_site
 ```
