@@ -9,6 +9,9 @@ cram_files = Channel.fromPath(params.cram_files + '/*.cram')
 reference = file(params.reference)
 
 process ConvertCRAMtoBAM {
+    publishDir 'bam_files', mode: 'copy'
+    tag "${cram_file.baseName}"
+    
     input:
     path cram_file
     path reference
@@ -23,6 +26,8 @@ process ConvertCRAMtoBAM {
 }
 
 process IndexBAM {
+    publishDir 'bam_files', mode: 'copy'
+
     input:
     path bam_file
 
@@ -35,8 +40,25 @@ process IndexBAM {
     """
 }
 
+process BAMtoBigwig {
+    publishDir 'bigwig_files', mode: 'copy'
+    
+    input:
+    path bam_file
+    path index_file
+
+    output:
+    path "${bam_file}.bw"
+
+    script:
+    """
+    bamCoverage -b $bam_file -o ${bam_file}.bw
+    """
+}
+
 workflow {
     bam_files = ConvertCRAMtoBAM(cram_files, reference)
-    IndexBAM(bam_files)
+    index_files = IndexBAM(bam_files)
+    BAMtoBigwig(bam_files, index_files)
 }
 
