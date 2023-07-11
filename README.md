@@ -4,7 +4,6 @@ WIP: General idea fastq -> visualization + analysis for ChIP data
 ```mermaid
 graph TD;
     fastq --> bam
-    bam --> bam.bai
     bam --> peak calling (MACS3)
     peak calling (MACS3) --> consensus peaks (mscp)
     consensus peaks (mscp) --> peak sites
