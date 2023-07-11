@@ -4,5 +4,4 @@ WIP: General idea fastq -> visualization + analysis for ChIP data
 ```mermaid
 flowchart TD
     fastq --> bam
-    bam --> peak calling (MACS3)
 ```
