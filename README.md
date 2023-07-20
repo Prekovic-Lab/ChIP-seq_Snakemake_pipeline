@@ -1,7 +1,7 @@
 # ChIP_seq_pipeline
 WIP: General idea fastq -> visualization + analysis for ChIP data
 
-<img src=/chip_seq_workflow.drawio.png" width="400">
+<img src="/chip_seq_workflow.drawio.png" width="400">
 
 ```mermaid
 flowchart TD
