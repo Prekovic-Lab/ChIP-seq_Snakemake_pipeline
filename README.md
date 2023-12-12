@@ -6,6 +6,12 @@ For now: Uploading individual scripts and working on creating a snakemake pipeli
 Inside this script, there are commands to run narrow or broad peaks using macs3. Install macs3 with pip install macs3. Modify the script accordingly and run through the command line.
 ### run_mspc.sh
 The command to get the consensus peaks from .narrowPeak or .broadPeaks replicates. Adjust the command accordingly. Download [mspc](https://genometric.github.io/MSPC/docs/installation/) for your operating system and follow the instructions. Then you have to add it to the path to run it from anywhere. For Linux that means go to .bashrc (type cd, the file should be there) and add somewhere in the file `export PATH=$PATH:/path/to/mspc`. In order to run it requires the config.json file. If it doesn't work, modify (the columns of the .narrow/.broadPeak files).
+
+How to do on Mac:
+    -    nano ~/.bash_profile
+    -    export PATH=$PATH:/path/to/mspc (put your path here)
+    -    source ~/.bash_profile (activate with this command)
+
 ### run_intervene.sh
 Then we will use [intervene](https://github.com/asntech/intervene) to get the peaks that are lost/gained. I use as input the consensus peak bed file from `run_mspc.sh` comparing it to a different condition (e.g. 0 days vs 7 days / lost gained peaks). It needs Python 3.7 (at least to get the Venn graphs, to get the different sets it works regardless I think; you don't really need the graphs).
 ### Proximal genes
