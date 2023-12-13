@@ -7,7 +7,7 @@ Inside this script, there are commands to run narrow or broad peaks using macs3.
 ### run_mspc.sh
 The command to get the consensus peaks from .narrowPeak or .broadPeaks replicates. Adjust the command accordingly. Download [mspc](https://genometric.github.io/MSPC/docs/installation/) for your operating system and follow the instructions. Then you have to add it to the path to run it from anywhere. For Linux that means go to .bashrc (type cd, the file should be there) and add somewhere in the file `export PATH=$PATH:/path/to/mspc`. In order to run it requires the config.json file. If it doesn't work, modify (the columns of the .narrow/.broadPeak files).
 
-    -    How to do on Mac:
+    How to do on Mac:
       -    nano ~/.bash_profile
       -    export PATH=$PATH:/path/to/mspc (put your path here)
       -    source ~/.bash_profile (activate with this command)
