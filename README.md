@@ -1,3 +1,6 @@
+[![Python Version](https://img.shields.io/badge/python-3.10.13-blue.svg)](https://www.python.org/downloads/release/python-31013/)
+[![Snakemake Version](https://img.shields.io/badge/snakemake-7.32.4-brightgreen.svg)](https://snakemake.github.io/)
+
 # ChIP sequencing pipeline
 WIP: General idea fastq -> visualization + analysis for ChIP data
 
@@ -25,21 +28,12 @@ In order to create the tornado plot we have to create the matrix first (matrix_t
 ### doing the analysis in R
 In R I am doing the analysis using [DiffBind](https://bioconductor.org/packages/release/bioc/html/DiffBind.html) and [ChIPSeeker](https://bioconductor.org/packages/release/bioc/html/ChIPseeker.html). It enables you to skip the whole process that was previously described, however, it is less customizable. Check it and if you have any question let me know.
 
-<img src="/chip_seq_workflow.drawio.png" width="400">
+<img src="/Figures/chip_seq_workflow.drawio.png" width="400">
 
-```mermaid
-flowchart TD
-    bam --> bai
-    bam --> bigwig
-    bai --> bigwig
-```
-
-To Do:
-- [ ] Fix mermaid flowchart above - update it when I add more things
-- [ ] Figure a way to deal with the replicates/input files (config?)
+To-Do (Snakemake ChIP-Seq pipeline):
+- [ ] Figure a way to deal with the replicates (config.yaml - per sample a control file and a replicate status).
 - [ ] Start the pipeline from fastq; if someone has cram/bam/whatever what will they do?
-- [ ] Make it more verbose in the command line (tags)
-- [ ] Add comments in the script
-- [ ] Add thread option in the script
-- [ ] After fixing the input and figuring out a way to deal with the replicates, continue with the second workflow (MACS3, mscp, intervene, gseapy)
-- [ ] Find an alternative to cistrome go 
+- [ ] Make it more verbose in the command line (tags).
+- [ ] Pre-processing analysis (when fastq file is not great).
+- [ ] Get info from fastqc analysis (sequence length, #of poor reads, etc).
+- [ ] Create the R-script (ChipSeeker / pathway analysis / differential analysis).
