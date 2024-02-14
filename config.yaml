@@ -1,0 +1,19 @@
+samples:
+  - 6212_1_WZ4191_CCTTGATC_S2_R1_001
+  - 6212_2_WZ4192_GAGCAGTA_S5_R1_001
+control_files:
+  6212_1_WZ4191_CCTTGATC_S2_R1_001: '6212_3_WZ4193_TGGTAGCT_S4'
+  6212_2_WZ4192_GAGCAGTA_S5_R1_001: '6212_3_WZ4193_TGGTAGCT_S4'
+reads:
+  - r1
+  - r2
+# Select one of the following: bwa or bowtie2 or HISAT2 
+chosen_aligner: bwa
+# Select one of the following: narrrowPeak or broadPeak
+chosen_peaks: narrowPeak
+# Select one of the following: hg38, hg19, mm19
+genome_version: hg38
+sequencing:
+  # Select one of the following: single or paired
+  type: single
+  length: 60
