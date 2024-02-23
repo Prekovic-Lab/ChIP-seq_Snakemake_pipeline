@@ -3,21 +3,21 @@ configfile: 'config.yaml'
 
 # Define chosen_aligner based on the config
 chosen_aligner = config['chosen_aligner']
-chosen_peaks = config['chosen_peaks']
+#chosen_peaks = config['chosen_peaks']
 
 # Import modules
 import os
 
 # Check if the output folder exists, if not, create it
-for folder in ['aligned_reads', 'peaks', 'fastqc']:
+for folder in ['aligned_reads', 'fastqc']:
     if not os.path.exists(folder):
         os.makedirs(folder)
 
 rule all:
     input:
         expand('fastqc/{sample}_fastqc.html', sample=config['samples']),
-        expand('aligned_reads/{sample}.bam', sample=config['samples']),
-        expand('peaks/{sample}_peaks.{peak_type}', sample=config['samples'], peak_type=config['chosen_peaks'])
+        expand('aligned_reads/{sample}.bam', sample=config['samples'])
+#        expand('peaks/{sample}_peaks.{peak_type}', sample=config['samples'], peak_type=config['chosen_peaks'])
 
 rule fastqc:
     input:
@@ -90,42 +90,42 @@ elif chosen_aligner == 'bwa':
 #
 #
 
-if chosen_peaks == "narrow":
-    rule MACS3:
-        input:
-            bam='aligned_reads/{sample}.bam',
-            control=lambda wildcards: f'aligned_reads/{config["control_files"][wildcards.sample]}.bam'
-        output:
-            narrowPeak='peaks/{sample}_peaks.narrowPeak',
-            model_r='peaks/{sample}_model.r',
-            control_lambda='peaks/{sample}_control_lambda.bdg',
-            treat_pileup='peaks/{sample}_treat_pileup.bdg',
-            xls='peaks/{sample}_peaks.xls',
-            summits='peaks/{sample}_summits.bed'
-        params:
-            output_name=lambda wildcards: f"{wildcards.sample}",
-            macs3_dir='peaks'
-        shell:
-            """
-            macs3 callpeak -t {input.bam} -c {input.control} -n {params.output_name} --outdir {params.macs3_dir} -f BAM -g hs -B -q 0.01
-            """
+# if chosen_peaks == "narrowPeak":
+#     rule MACS3:
+#         input:
+#             bam='aligned_reads/{sample}.bam',
+#             control=lambda wildcards: f'aligned_reads/{config["control_files"][wildcards.sample]}.bam'
+#         output:
+#             narrowPeak='peaks/{sample}_peaks.narrowPeak',
+#             model_r='peaks/{sample}_model.r',
+#             control_lambda='peaks/{sample}_control_lambda.bdg',
+#             treat_pileup='peaks/{sample}_treat_pileup.bdg',
+#             xls='peaks/{sample}_peaks.xls',
+#             summits='peaks/{sample}_summits.bed'
+#         params:
+#             output_name=lambda wildcards: f"{wildcards.sample}",
+#             macs3_dir='peaks'
+#         shell:
+#             """
+#             macs3 callpeak -t {input.bam} -c {input.control} -n {params.output_name} --outdir {params.macs3_dir} -f BAM -g hs -B -q 0.01
+#             """
 
-# make sure this is correct
-elif chosen_peaks == "broad":
-    rule MACS3:
-        input:
-            bam='aligned_reads/{sample}.bam',
-            control=lambda wildcards: f'aligned_reads/{config["control_files"][wildcards.sample]}.bam'
-        output:
-            broadPeak='peaks/{sample}_peaks.broadPeak',
-            model_r='peaks/{sample}_model.r',
-            gappedPeak='peaks/{sample}_peaks.gappedPeak',
-            xls='peaks/{sample}_peaks.xls',
-        params:
-            output_name= lambda wildcards: f"{wildcards.sample}",
-            macs3_dir="peaks"
-        shell:
-            """
-            macs3 callpeak -t {input_bam} -c {input.control} -n {params.output_name} --outdir {params.macs3_dir} -f BAM -g hs --broad --broad-cutoff 0.1
-            """
+# # make sure this is correct
+# elif chosen_peaks == "broadPeak":
+#     rule MACS3:
+#         input:
+#             bam='aligned_reads/{sample}.bam',
+#             control=lambda wildcards: f'aligned_reads/{config["control_files"][wildcards.sample]}.bam'
+#         output:
+#             broadPeak='peaks/{sample}_peaks.broadPeak',
+#             model_r='peaks/{sample}_model.r',
+#             gappedPeak='peaks/{sample}_peaks.gappedPeak',
+#             xls='peaks/{sample}_peaks.xls',
+#         params:
+#             output_name= lambda wildcards: f"{wildcards.sample}",
+#             macs3_dir="peaks"
+#         shell:
+#             """
+#             macs3 callpeak -t {input_bam} -c {input.control} -n {params.output_name} --outdir {params.macs3_dir} -f BAM -g hs --broad --broad-cutoff 0.1
+#             """
 

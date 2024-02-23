@@ -1,0 +1,9 @@
+filename	condition	factor	replicate	control
+GR_untreated_1	control_GR	H3K27ac	1	GR_untreated_1
+GR_untreated_2	control_GR	H3K27ac	2	GR_untreated_2
+GR_Dexa_1	Dexa_GR	H3K27ac	1	GR_Dexa_1
+GR_Dexa_2	Dexa_GR	H3K27ac	2	GR_Dexa_2
+FOXA1_untreated_1	control_FOXA1	H3K27ac	1	FOXA1_untreated_1
+FOXA1_untreated_2	control_FOXA1	H3K27ac	2	FOXA1_untreated_2
+FOXA1_Dexa_1	Dexa_FOXA1	H3K27ac	1	FOXA1_Dexa_1
+FOXA1_Dexa_2	Dexa_FOXA1	H3K27ac	2	FOXA1_Dexa_2

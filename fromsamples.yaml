@@ -1,0 +1,14 @@
+# Select one of the following: narrrowPeak or broadPeak
+chosen_peaks: narrowPeak
+control_macs: FALSE
+# if you want to merge biological replicates (bam files) or not (true or false)
+merge_replicates: True    # For now it only affects bam file merging and bigwig file creation
+# Select one of the following: hg38, hg19, mm19
+genome_version: hg38
+# genome size (bamCoverage) : https://deeptools.readthedocs.io/en/latest/content/feature/effectiveGenomeSize.html
+gen_size: 2913022398
+# intervene comparison:
+intervene_compare: 
+  - ['control_FOXA1', 'Dexa_FOXA1']
+  - ['control_GR','Dexa_GR']
+  - ['control_GR','Dexa_GR','control_FOXA1']
