@@ -1,8 +1,8 @@
-starting_file: "bam"   # cram or bam
+starting_file: "cram"   # cram or bam
 threads: 8  # Default number of threads for all rules
-cram_dir: "GCF-7121"    # if cram in starting_file
-reference_genome: "reference_genome/Rattus_norvegicus.Rnor_6.0.dna.toplevel.fa"
-storing_cram: "test_cram"   # if bam in starting_file
+cram_dir: "path/to/cram"    # if cram in starting_file
+reference_genome: "path/to/reference/genome.fa"
+storing_cram: "path/to/store/cram"   # if bam in starting_file
 samples:
-  - 7121_10_wz5132_CCAGACCGAT-GCTACTTGCA_S41-mdup
-  - 7121_11_wz5133_TCGACGGCAA-GTAGTTGTGT_S47-mdup
+  - sample1
+  - sample2
