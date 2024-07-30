@@ -1,0 +1,5 @@
+filename	condition	replicate	control
+sample_1	cond_1	1	control_cond_1
+sample_1	cond_1	2	control_cond_1
+sample_1	cond_2	1	control_cond_2
+sample_1	cond_2	2	control_cond_2

@@ -1,0 +1,27 @@
+# config.yaml
+
+# Select one of the following: narrowPeak or broadPeak 
+chosen_peaks: narrowPeak    # see https://www.encodeproject.org/chip-seq/histone/
+
+# Sequencing type: paired_end or single_end
+sequencing_type: paired_end
+
+# MACS3 options 
+control_macs: True  # control/input or not (True/False)
+# Select the genome size or organism for macs3 (e.g. hs, mm, etc)
+genome_size: hs     # look at -g @ https://macs3-project.github.io/MACS/docs/callpeak.html
+
+# Whether to merge replicates using MSPC, intervene, and merging bams
+merge_replicates: True  # True/False
+
+# what comparisons to make (from 2 up to 6 conditions)
+# the names should be like the conditions from the samples
+# will be done if merge_replicates is True
+intervene_compare: 
+  - ['cond_1','cond_2']
+  
+# bamCoverage options
+bamCoverage_binSize: 1      # lower is higher quality
+bamCoverage_effectiveGenomeSize: 2913022398     # https://deeptools.readthedocs.io/en/latest/content/feature/effectiveGenomeSize.html
+bamCoverage_normalizeUsing: "RPGC"
+bamCoverage_threads: 10
