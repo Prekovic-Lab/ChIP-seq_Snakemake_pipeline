@@ -1,6 +1,6 @@
 # Paths
-bam_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_single/deduped
-output_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_single
+bam_dir: /path/to/bam/files
+output_dir: /path/to/output
 # path to the samples file (tab-separated file)
 # example: 
 # filename	condition	replicate	control
@@ -8,7 +8,7 @@ output_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_single
 # sample_1	cond_1	2	control_cond_1
 # sample_1	cond_2	1	control_cond_2
 # sample_1	cond_2	2	control_cond_2
-samples_file: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/samples_t.txt
+samples_file: /path/to/samples.txt
 
 # Select one of the following: narrowPeak or broadPeak 
 chosen_peaks: narrowPeak    # see https://www.encodeproject.org/chip-seq/histone/
@@ -28,7 +28,7 @@ merge_replicates: True  # True/False
 # the names should be like the conditions from the samples
 # will be done if merge_replicates is True
 intervene_compare: 
-  - ['GR_Dexa','GR_untreated']
+  - ['cond_1','cond_2']
   
 # bamCoverage options
 bamCoverage_binSize: 1      # lower is higher quality
