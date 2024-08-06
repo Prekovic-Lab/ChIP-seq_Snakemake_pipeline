@@ -3,6 +3,22 @@
 [![Snakemake Version](https://img.shields.io/badge/snakemake-7.32.4-brightgreen.svg)](https://snakemake.github.io/)
 
 ## The pipeline is divided into 4 pipelines:
+#### 1: `align.smk`: Alignment starting from fastq files 
+<img src="figures/align.png" alt="Alignment Figure" width="250" height="280"/>
+
+- Information:
+  - We need to have `sample1.fastq.gz` files or `sample1_R1.fastq.gz` & `sample1_R2.fastq.gz`.
+  - Modify the `config/align.yaml` accordingly.
+  - The pipeline will be different depending on the chosen aligner and sequencing type (paired-end/single-end).
+  - Reference genome `ref_genome.fa` should be where the indexed files of the aligners are. If they are not there, they will be created. 
+  - Many multiqc reports from multiple points of the pipeline.
+- Folders of the pipeline:
+  - `config/align.yaml`
+  - `ref_genome.fa`
+  - Run the pipeline `snakemake -s align.smk -c 8 -j 5 --use-conda`, where -c is the number of cores and -j are the number of jobs running in parallel (mostly for servers). If you know your setting, change those however you like. The default cores that are used for this pipeline are 8.
+- How to run:
+  - Fill in the `config/align.yaml`
+  - Install the necessary packages, through the `.yml` file in `/envs`.
 #### 2: `transform_files.smk`: Transform files from cram to bam and vice versa.
 - Information:
   - We usually receive data in cram format, so we do not have to align every sample.
@@ -15,11 +31,13 @@
   - Make sure the necessary directories/files mentioned above are there.
   - Install the necessary packages, through the `.yml` file in `/envs`.
   - Modify the `config/transform_files.yaml` according to what you want.
-  - Run the pipeline `snakemake -s transform_files.smk -c 8 -j 5`, where -c is the amount of cores and -j are the number of jobs that run in parallel (mostly for servers). If you know your setting, change those however you like. The default cores that are used for this pipeline are 8.
+  - Run the pipeline `snakemake -s transform_files.smk -c 8 -j 5`, where -c is the number of cores and -j are the number of jobs running in parallel (mostly for servers). If you know your settings, change those however you like. The default cores that are used for this pipeline are 8.
 #### 3: `peak_n_bigwigs.smk`: By running this pipeline you get peaks and bigwig files starting from bam files.
+<img src="figures/peaks_n_bigwig.png" alt="Alignment Figure" width="450" height="250"/>
+
 - Information:
-  - bam files should be indexed and sorted in `/aligned_reads`. This is the output of both pipelines 1 & 2.
-  - Modify the `config/peak_n_bigwig.config` accordingly.
+  - bam files should be indexed and sorted.
+  - Modify the `config/peak_n_bigwig.yaml` accordingly.
   - The pipeline will continue per condition if `merge_replicates = True`. If it is `False`, you get the peak files and bigwigs only.
 - Folders of the pipeline:
   - `/aligned_reads`: where the bams are located,
@@ -32,6 +50,6 @@
   - Download the folders mentioned above. You can use git clone for that or manually install them.
   - Install the necessary packages, through the `.yml` file in `/envs`. Moreover, you need to install (mspc)[https://genometric.github.io/MSPC/docs/installation] and add it to the path (add to `.bashrc` the following `export PATH=$PATH:/path/to/mspc`, where you modify the `path/to/mspc`.
   - Modify the `samples.txt` and `config/peak_n_bigwig.yaml` according to your data.
-  - Run the pipeline `snakemake -s peak_n_bigwigs.smk -c 10 -j 5`, where -c is the amount of cores and -j are the number of jobs that run in parallel (mostly for servers). If you know your setting, change those however you like.
+  - Run the pipeline `snakemake -s peak_n_bigwigs.smk -c 10 -j 5`, where -c is the number of cores and -j are the number of jobs running in parallel (mostly for servers). If you know your setting, change those however you like.
    
 If something does not work or for any questions, contact me at [Theo Chalkiadakis](mailto:t.chalkiadakis@umcutrecht.nl).
