@@ -1,13 +1,23 @@
-# config.yaml
+# Paths
+bam_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_single/deduped
+output_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_single
+# path to the samples file (tab-separated file)
+# example: 
+# filename	condition	replicate	control
+# sample_1	cond_1	1	control_cond_1
+# sample_1	cond_1	2	control_cond_1
+# sample_1	cond_2	1	control_cond_2
+# sample_1	cond_2	2	control_cond_2
+samples_file: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/samples_t.txt
 
 # Select one of the following: narrowPeak or broadPeak 
 chosen_peaks: narrowPeak    # see https://www.encodeproject.org/chip-seq/histone/
 
-# Sequencing type: paired_end or single_end
-sequencing_type: paired_end
+# Sequencing type: paired or single
+seq_type: single
 
 # MACS3 options 
-control_macs: True  # control/input or not (True/False)
+control_macs: False  # control/input or not (True/False)
 # Select the genome size or organism for macs3 (e.g. hs, mm, etc)
 genome_size: hs     # look at -g @ https://macs3-project.github.io/MACS/docs/callpeak.html
 
@@ -18,10 +28,10 @@ merge_replicates: True  # True/False
 # the names should be like the conditions from the samples
 # will be done if merge_replicates is True
 intervene_compare: 
-  - ['cond_1','cond_2']
+  - ['GR_Dexa','GR_untreated']
   
 # bamCoverage options
 bamCoverage_binSize: 1      # lower is higher quality
 bamCoverage_effectiveGenomeSize: 2913022398     # https://deeptools.readthedocs.io/en/latest/content/feature/effectiveGenomeSize.html
 bamCoverage_normalizeUsing: "RPGC"
-bamCoverage_threads: 10
+bamCoverage_threads: 5

@@ -1,0 +1,23 @@
+# Paths
+fastq_dir: /mnt/d/alignment_snakemake/fastq_files                             #"path/to/fastq/files"
+output_dir: /mnt/c/Users/tchalkiadakis/Desktop/snakemake_off/results_paired   #"path/to/output"
+#"path/to/reference/genome", it also looks for indexed files of each aligner there
+ref_genome: /mnt/d/alignment_snakemake/reference_genome/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa
+
+# Sequencing type (paired or single)
+seq_type: paired 
+
+# Chosen aligner (bwa or bowtie2)
+aligner: bwa
+
+# Samples (add your sample names here)
+# 1. if it starts with a number add quotes to the sample name
+# 2. The script assumes your files are: single-end.fastq.gz -> single-end is the sample name
+#         or paired-end_R1.fastq.gz, paired-end_R2.fastq.gz -> paired-end is the sample name
+samples:
+  # - GR_untreated_1
+  # - GR_untreated_2
+  # - GR_Dexa_1
+  # - GR_Dexa_2
+  - "7712_3_3"
+  - "7712_5_5"
