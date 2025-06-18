@@ -1,26 +1,66 @@
-samples:
-  - GR_untreated_1
-  - GR_untreated_2
-  - GR_Dexa_1
-  - GR_Dexa_2
-  - FOXA1_untreated_1
-  - FOXA1_untreated_2
-  - FOXA1_Dexa_1
-  - FOXA1_Dexa_2
-# control_files:
-#   sub1: 'ctrl'
-#   sub2: 'ctrl'
-#   sub3: 'ctrl'
-# reads:
-#   - r1
-#   - r2
-# Select one of the following: bwa or bowtie2 or HISAT2 
-chosen_aligner: bwa
-# Select one of the following: narrrowPeak or broadPeak
-#chosen_peaks: narrowPeak
-# Select one of the following: hg38, hg19, mm19
-genome_version: hg38
-sequencing:
-  # Select one of the following: single or paired
-  type: single
-  length: 60
+# ChIP-seq Analysis Configuration
+
+# Paths
+tmp_dir: /hpc/shared/prekovic/tchalkiadakis/temporary/
+fastq_dir: /hpc/shared/prekovic/erp_10/Jurian/fastq_paired
+output_dir: /hpc/shared/prekovic/erp_10/Jurian/results_test_paired
+ref_genome: /hpc/shared/prekovic/common_files/bwa_113_release_homo_sapiens/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+samples: sub_samples.tsv
+
+# Reference genome files (derived from ref_genome path)
+genome:
+  fasta: /hpc/shared/prekovic/common_files/bwa_113_release_homo_sapiens/Homo_sapiens.GRCh38.dna_sm.primary_assembly.fa.gz
+  # Index will be the same path without .fa.gz extension for BWA
+  index: /hpc/shared/prekovic/common_files/bwa_113_release_homo_sapiens/Homo_sapiens.GRCh38.dna_sm.primary_assembly
+  # GTF file - you may want to add this path as well
+  gtf: /hpc/shared/prekovic/common_files/annotation/Homo_sapiens.GRCh38.113.gtf
+
+# Tool selection
+aligner: bwa  # or bowtie2
+
+# MACS3 settings
+genome_size: hs  # hs for human, mm for mouse, or specific number like 2.7e9
+
+# NEW ADDITIONS:
+# BigWig generation settings
+bigwig:
+  merge_replicates: true  # Set to false to generate individual bigwig files
+  normalize: "RPKM"  # Options: RPKM, CPM, BPM, RPGC, None
+
+# MSPC settings
+mspc:
+  stringency: 1e-8
+  weak_threshold: 1e-4
+
+# Venn diagram settings - specify conditions to compare (up to 6 conditionsYe)
+venn_pairwise:
+  - ["FCS", "DEXA"]
+  - ["DEXA", "FCS"]
+
+# Heatmap settings
+heatmap:
+  upstream: 10000
+  downstream: 10000
+  bin_size: 50
+  reference_point: "center"  # Options: center, TSS, TES
+  colors: "Reds"
+
+# DiffBind analysis configuration
+diffbind:
+  comparisons:
+    - name: "RXRa_vs_Input"
+      treatment: "RXRa"
+      control: "Input"
+    - name: "H3K27Ac_vs_Input"  
+      treatment: "H3K27Ac"
+      control: "Input"
+    # You can add more comparisons like:
+    # - name: "RXRa_vs_H3K27Ac"
+    #   treatment: "RXRa"
+    #   control: "H3K27Ac"
+  
+  # DiffBind parameters
+  threads: 6
+  mem_mb: 16000
+  runtime: 240
+  min_members: 2  # Minimum replicates per group

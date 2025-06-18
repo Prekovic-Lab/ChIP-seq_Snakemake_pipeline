@@ -1,0 +1,7 @@
+name	condition	replicate	control	seq_type	peak_type	file_1	file_2
+ENCFF964CIX	RXRa	1	ENCFF000PPM	single	narrow	ENCFF964CIX.fastq.gz	
+ENCFF408DAJ	RXRa	2	ENCFF000PPQ	single	narrow	ENCFF408DAJ.fastq.gz
+ENCFF000PPM	Input	1	-	single	narrow	ENCFF000PPM.fastq.gz	
+ENCFF000PPQ	Input	2	-	single	narrow	ENCFF000PPQ.fastq.gz	
+ENCFF174QLC	H3K27Ac	1	ENCFF000PPM	single	narrow	ENCFF174QLC.fastq.gz	
+ENCFF256YDZ	H3K27Ac	2	ENCFF000PPQ	single	narrow	ENCFF256YDZ.fastq.gz	
