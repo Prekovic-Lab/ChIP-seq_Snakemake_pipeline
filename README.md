@@ -76,6 +76,7 @@ use-conda: true
 
 For both options, keep in mind that `--use-conda` will take some time in the beginning, by creating the necessary environments. 
 
+
 To-Do (Snakemake ChIP-Seq pipeline):
 - [ ] UMI-tools options, in case they exist.
 - [ ] Integrate the R-scripts ( diffbind / ChipSeeker / pathway analysis).
