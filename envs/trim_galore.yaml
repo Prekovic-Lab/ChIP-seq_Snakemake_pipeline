@@ -1,0 +1,10 @@
+name: trim_galore
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - trim-galore
+  - fastqc
+  - cutadapt
+  - python
