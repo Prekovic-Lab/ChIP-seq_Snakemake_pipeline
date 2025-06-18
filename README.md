@@ -31,13 +31,7 @@ In R I am doing the analysis using [DiffBind](https://bioconductor.org/packages/
 
 <img src="/Figures/chip_seq_workflow.drawio.png" width="400">
 
-To-Do (Snakemake ChIP-Seq pipeline):
-- [ ] Figure a way to deal with the replicates (config.yaml - per sample a control file and a replicate status).
-- [ ] Start the pipeline from fastq; if someone has cram/bam/whatever what will they do?
-- [ ] Make it more verbose in the command line (tags).
-- [ ] Pre-processing analysis (when fastq file is not great).
-- [ ] Get info from fastqc analysis (sequence length, #of poor reads, etc).
-- [ ] Create the R-script (ChipSeeker / pathway analysis / differential analysis). 
+
 
 # How to run the pipeline:
 
@@ -81,3 +75,8 @@ use-conda: true
 ```
 
 For both options, keep in mind that `--use-conda` will take some time in the beginning, by creating the necessary environments. 
+
+To-Do (Snakemake ChIP-Seq pipeline):
+- [ ] UMI-tools options, in case they exist.
+- [ ] Integrate the R-scripts ( diffbind / ChipSeeker / pathway analysis).
+- [ ] Motif analysis (FIMO vs STREME vs HOMER)
